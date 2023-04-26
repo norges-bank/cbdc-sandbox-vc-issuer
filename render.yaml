@@ -1,0 +1,32 @@
+services:
+  # DEV SERVER
+  - type: web
+    name: dsp-vc-issuer
+    env: node
+    branch: main
+    region: frankfurt
+    buildCommand: 'npm install; npm run build'
+    startCommand: 'npm run start'
+    plan: Starter
+    pullRequestPreviewsEnabled: true
+    domains:
+      - vc-issuer.dsp.symfoni.dev
+    envVars:
+    - key: DID_NAMESPACE
+      value: did:ethr:1729
+    - key: RPC_URL
+      sync: false
+    - key: SECRET
+      generateValue: true
+    - key: CHAIN_ID
+      value: 1729
+    - key: ISSUER_SECRET
+      sync: false
+    - key: ID_PORTEN_BASIC_AUTH
+      sync: false
+    - key: NEXT_PUBLIC_ID_PORTEN_CALLBACK_URL
+      value: https://vc-issuer.dsp.symfoni.dev
+    - key: NEXT_PUBLIC_ID_PORTEN_CLIENT_ID
+      sync: false
+    - key: NEXT_PUBLIC_API_URL
+      value: https://vc-issuer.dsp.symfoni.dev

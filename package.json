@@ -1,0 +1,51 @@
+{
+  "name": "cbdc-vc-issuer",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 80",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "test": "start-server-and-test dev http://localhost:80 playwright",
+    "test:ci": "start-server-and-test dev http://localhost:80 playwright:ci",
+    "test:window": "start-server-and-test dev http://localhost:80 playwright:window",
+    "playwright": "npx playwright test",
+    "playwright:ci": "npx playwright test --reporter=html",
+    "playwright:window": "npx playwright test login.spec.ts --headed"
+  },
+  "dependencies": {
+    "@nextui-org/react": "^1.0.0-beta.10",
+    "@types/debug": "^4.1.7",
+    "@veramo/core": "^4.0.0",
+    "@veramo/credential-w3c": "^4.0.1",
+    "@veramo/data-store": "^4.0.0",
+    "@veramo/did-manager": "^4.0.0",
+    "@veramo/did-provider-ethr": "^4.0.0",
+    "@veramo/did-resolver": "^4.0.0",
+    "@veramo/key-manager": "^4.0.0",
+    "@veramo/kms-local": "^4.0.0",
+    "debug": "^4.3.4",
+    "ethers": "^5.7.1",
+    "ethr-did-resolver": "^6.2.2",
+    "fakerator": "^0.3.6",
+    "neverthrow": "^5.0.0",
+    "next": "12.3.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-feather": "^2.0.10",
+    "react-icons": "^4.4.0",
+    "sqlite3": "^5.1.1",
+    "zustand": "^4.1.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.26.0",
+    "@types/node": "18.7.18",
+    "@types/react": "18.0.20",
+    "@types/react-dom": "18.0.6",
+    "eslint": "8.23.1",
+    "eslint-config-next": "12.3.0",
+    "start-server-and-test": "^1.14.0",
+    "typescript": "4.8.3"
+  }
+}

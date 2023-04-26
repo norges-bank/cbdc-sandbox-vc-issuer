@@ -1,0 +1,14 @@
+{
+    "formatter": {
+        "indentStyle": "tab",
+        "lineWidth": 120
+    },
+    "linter": {
+        "enabled": false,
+        "rules": {
+            "jsx": {
+                "noImplicitBoolean": "off"
+            }
+        }
+    }
+}
