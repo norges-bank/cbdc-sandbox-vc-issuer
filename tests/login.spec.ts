@@ -1,7 +1,16 @@
 import { test, expect } from "@playwright/test";
+import { loadEnvConfig } from "@next/env";
 
-test("oidc testing", async ({ page, request }) => {
-	await page.goto("http://localhost");
+test.beforeAll(() => {
+	const projectDir = process.cwd();
+	loadEnvConfig(projectDir);
+});
+
+test("oidc testing", async ({ page, baseURL }) => {
+	if (!baseURL) {
+		throw new Error("No baseURL set");
+	}
+	await page.goto(baseURL);
 
 	await page.waitForSelector("#login").then((el) => el.click());
 
@@ -16,22 +25,21 @@ test("oidc testing", async ({ page, request }) => {
 
 	if (!page.url().includes("code")) {
 		await page.waitForSelector('input[name="idporten\\.input\\.CONTACTINFO_MOBILE"]').then((el) => el.fill("40876543"));
-		await page.waitForSelector('input[name="idporten\\.inputrepeat\\.CONTACTINFO_MOBILE"]').then(
-			(el) => el.fill("40876543"),
-		);
-		await page.waitForSelector('input[name="idporten\\.input\\.CONTACTINFO_EMAIL"]').then(
-			(el) => el.fill("patent@test.no"),
-		);
-		await page.waitForSelector('input[name="idporten\\.inputrepeat\\.CONTACTINFO_EMAIL"]').then(
-			(el) => el.fill("patent@test.no"),
-		);
+		await page
+			.waitForSelector('input[name="idporten\\.inputrepeat\\.CONTACTINFO_MOBILE"]')
+			.then((el) => el.fill("40876543"));
+		await page
+			.waitForSelector('input[name="idporten\\.input\\.CONTACTINFO_EMAIL"]')
+			.then((el) => el.fill("patent@test.no"));
+		await page
+			.waitForSelector('input[name="idporten\\.inputrepeat\\.CONTACTINFO_EMAIL"]')
+			.then((el) => el.fill("patent@test.no"));
 
 		await page.click("#idporten\\.inputbutton\\.NEXT");
 	}
 
 	// Expect the GET parameter "code" to be present
-	expect(page.url())
-		.toContain("code");
+	expect(page.url()).toContain("code");
 
 	// Get idporten code from url #URLSearchParams not working
 	const code = page.url().split("code=")[1];

@@ -3,16 +3,17 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 80",
+    "dev": "next dev -p 3001",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "start-server-and-test dev http://localhost:80 playwright",
-    "test:ci": "start-server-and-test dev http://localhost:80 playwright:ci",
-    "test:window": "start-server-and-test dev http://localhost:80 playwright:window",
+    "test": "start-server-and-test dev http://localhost:3001 playwright",
+    "test:ci": "start-server-and-test dev http://localhost:3001 playwright:ci",
+    "test:window": "start-server-and-test dev http://localhost:3001 playwright:window",
     "playwright": "npx playwright test",
     "playwright:ci": "npx playwright test --reporter=html",
-    "playwright:window": "npx playwright test login.spec.ts --headed"
+    "playwright:window": "npx playwright test login.spec.ts --headed",
+    "postinstall": "npx playwright install"
   },
   "dependencies": {
     "@nextui-org/react": "^1.0.0-beta.10",
