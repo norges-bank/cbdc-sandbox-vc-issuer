@@ -5,7 +5,6 @@ import { devices } from "@playwright/test";
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
  */
-// require('dotenv').config();
 
 /**
  * See https://playwright.dev/docs/test-configuration.
@@ -40,7 +39,7 @@ const config: PlaywrightTestConfig = {
 
 		/* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
 		// trace: "on-first-retry",
-		baseURL: "http://localhost",
+		baseURL: "http://localhost:3001",
 		extraHTTPHeaders: {
 			// We set this header per GitHub guidelines.
 			Accept: "application/vnd.github.v3+json",

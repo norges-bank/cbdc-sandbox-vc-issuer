@@ -13,7 +13,7 @@ test("get veramo agent raw", async ({ context }) => {
 	const agent = initAgent(getDatasource("test:veramo"));
 	expect(agent).toBeTruthy();
 });
-test("create identity from pk", async ({}) => {
+test("create identity from pk", async () => {
 	const wallet = ethers.Wallet.fromMnemonic(process.env.ISSUER_SECRET!);
 	const client = await VeramoClient.init({
 		alias: "issuerWallet",
